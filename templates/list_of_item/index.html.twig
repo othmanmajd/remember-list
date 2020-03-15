@@ -1,0 +1,102 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Remember List{% endblock %}
+
+{% block body %}
+    <style>
+        .p-10 {
+            padding: 10px;
+        }
+
+        .btn {
+            border-radius: 0
+        }
+    </style>
+    {% if alertMessage %}
+        <div class="alert alert-{{ alertMessageType }} alert-dismissible fade show" role="alert">
+            {{ alertMessage }}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    <div class="example-wrapper">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="row">
+
+                    <div class="col-md-10">
+                        <h1 style="border-bottom: solid 1px #000; ">Welcome in Remember list </h1>
+                        <p>Here are the list of item, they need to buy or todo</p>
+                    </div>
+                    <div class="col-2"><!-- Large modal -->
+                        <button type="button" class="btn btn-sm btn-success" data-toggle="modal" data-target=".create-item" style="margin-bottom: 2px;width: 150px">
+                            [+] Create Item
+                        </button>
+
+                        <form class="form-inline" action="{{ app.request.getSchemeAndHttpHost() }}/delteItem" method="post" onsubmit="return confirm('Are you sure you want delete this selected items?');" style="width: 150px">
+                            <input type="hidden" id="itemsSelected" name="itemsSelected">
+                            <button type="submit" class="btn btn-sm btn-danger" style="width: 150px">Delete Selected
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <p>
+                <div class="modal fade bd-example-modal-lg create-item" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <form id="form-create-new-item" action="{{ app.request.getSchemeAndHttpHost() }}/createNewItem" method="post" class="p-10" onsubmit=" notifyMe($('#txtItem').val())">
+                                <div>
+                                    <h4>Add new item to list </h4>
+                                    <hr>
+                                </div>
+                                <div class="">
+                                    <label for="txtItem">Item Name</label>
+                                    <input type="text" class="form-control" id="txtItem" name="txtItem">
+                                </div>
+                                <hr>
+                                <button type="submit" class="btn btn-primary btn-create-new-item">Create</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                </p>
+
+                <table class="table dataTable">
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col ">#</th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Created at</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in listItems %}
+                        <tr>
+                            <td style="width: 25px">
+                                <input type="checkbox" class="dt-cbox" data-id="{{ item.id }}">
+                            </td>
+                            <td scope="row">{{ loop.index }}                            </td>
+                            <td>{{ item.name }}</td>
+                            <td>{{ item.createDate|date("d.m.Y - H:i") }} </td>
+                            <td>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-2">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+    </script>
+{% endblock %}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="./assets/css/select.dataTables.min.css">
+</head>
+<body class="container-fluid">
+
+
+<nav class="navbar navbar-expand-lg navbar-light  ">
+    <a class="navbar-brand" href="{{ app.request.getSchemeAndHttpHost() }}" style="color: #366d9b">
+        <img src="/assets/img/logo-blue.png" width="100" height="75" class="logo"
+             alt="" border="0">
+        Remember List
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse center" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<hr>
+
+<div class="container">
+    {% block body %}{% endblock %}
+</div>
+{% block javascripts %}{% endblock %}
+
+<script src="./assets/js/jquery-3.2.1.slim.min.js"></script>
+<script src="./assets/js/popper.min.js"></script>
+<script src="./assets/js/bootstrap.min.js"></script>
+<script src="./assets/js/jquery.dataTables.min.js"></script>
+<script src="./assets/js/dataTables.select.min.js"></script>
+<script src="./assets/js/custom.js"></script>
+</body>
+</html>
