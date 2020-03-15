@@ -3,7 +3,7 @@
 * Add/Delete an item to the list
 * Push Notification, when someone create an Item
 
-![](https://github.com/majdothman/remember-list/public/assets/img/remember-list.gif)
+![](https://raw.githubusercontent.com/majdothman/remember-list/master/public/assets/img/remember-list.gif)
 
 ## System
 * Apache/Nginx  server
